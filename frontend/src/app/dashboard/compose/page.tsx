@@ -42,7 +42,7 @@ export default function ComposePage() {
     try {
       // Schedule each email individually
       for (const email of emails) {
-        await fetch('http://localhost:3001/api/schedule', {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/schedule`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

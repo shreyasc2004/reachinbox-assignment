@@ -17,14 +17,14 @@ export default function Sidebar() {
   useEffect(() => {
     if (session?.user?.id) {
       // Fetch Scheduled Count
-      fetch(`http://localhost:3001/api/emails/scheduled/${session.user.id}`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/emails/scheduled/${session.user.id}`)
         .then(res => res.json())
         .then(data => {
             if (Array.isArray(data)) setScheduledCount(data.length);
         }).catch(() => {});
         
       // Fetch Sent Count
-      fetch(`http://localhost:3001/api/emails/sent/${session.user.id}`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/emails/sent/${session.user.id}`)
         .then(res => res.json())
         .then(data => {
             if (Array.isArray(data)) setSentCount(data.length);

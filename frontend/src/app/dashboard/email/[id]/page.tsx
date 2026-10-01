@@ -13,7 +13,7 @@ export default function EmailViewPage({ params }: { params: Promise<{ id: string
 
   useEffect(() => {
     // Fetch email by ID from backend
-    fetch(`http://localhost:3001/api/emails/${id}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/emails/${id}`)
       .then(res => res.json())
       .then(data => setEmail(data))
       .catch(e => console.error(e));

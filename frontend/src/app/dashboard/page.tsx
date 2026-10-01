@@ -21,7 +21,7 @@ export default function DashboardPage() {
   const fetchEmails = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:3001/api/emails/scheduled/${session?.user?.id}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/emails/scheduled/${session?.user?.id}`);
       const data = await res.json();
       setEmails(data);
     } catch (e) {
@@ -36,7 +36,7 @@ export default function DashboardPage() {
     if (!search.trim()) return fetchEmails();
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:3001/api/emails/search?q=${search}&userId=${session?.user?.id}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/emails/search?q=${search}&userId=${session?.user?.id}`);
       const data = await res.json();
       setEmails(data.filter((e: any) => e.status === 'PENDING'));
     } catch (e) {
